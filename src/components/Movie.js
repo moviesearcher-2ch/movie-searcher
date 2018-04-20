@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
+import MovieCard from './MovieCard'
 
-const Movie = ({ films, prevPage, nextPage }) => {
-  const path = `http://image.tmdb.org/t/p/w342/`
-
+const Movie = ({films}) => {
+  Movie.propTypes = {
+    films: PropTypes.array.isRequired
+  }
+  
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} style={{overflow: "hidden", marginTop: "8px"}}>
       <Grid container justify="center" spacing={8}>
         {films.map(film => (
-          <Grid key={film.id} item>
-            <img src={`${path}${film.poster_path}`} alt="" />
-          </Grid>
-        ))}
+          <MovieCard key={film.id} film={film}/>
+        ))}       
       </Grid>
     </Grid>
-
   )
 }
 
 export default Movie
+

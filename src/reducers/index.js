@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import popularMovies from './popularMovies'
+import Fetcher from './Fetcher'
 
 export default combineReducers({
-  popularMovies
+  fetcher: Fetcher
 })

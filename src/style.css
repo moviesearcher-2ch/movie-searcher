@@ -3,3 +3,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+li {
+  list-style: none;
+}
+
+.links {
+  text-decoration: none;
+  color: #FFFFFF;
+}

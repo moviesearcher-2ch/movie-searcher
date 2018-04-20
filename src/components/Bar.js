@@ -15,13 +15,13 @@ const Bar = () => {
         <Typography variant="title" color="inherit">
           Movie Searcher
         </Typography>
-        <Link to='/home'>
+        <Link to="/some" className="links">
           <ToolbarTitle>Home</ToolbarTitle>
         </Link> 
-        <Link to='/home'>
+        <Link to="/some" className="links">
           <ToolbarTitle>About Us</ToolbarTitle>
         </Link> 
-        <Link to='/home'>
+        <Link to="/some" className="links">
           <ToolbarTitle>Another Page</ToolbarTitle>
         </Link>  
       </Toolbar>

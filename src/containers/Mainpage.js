@@ -1,56 +1,59 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPopularMovies} from '../actions/actions'
+import {getPopular} from '../actions/actions'
 import Movie from '../components/Movie'
+import Buttons from '../components/Buttons'
 
-class Test extends Component {
+class Mainpage extends Component {
   componentDidMount() {
-    this.props.getPopularMovies()
+    this.props.getPopular()
   }
 
   nextPage() {
-    const {total_pages, page} = this.props.popularMovies
-    const {getPopularMovies} = this.props
+    const {total_pages, page} = this.props.fetcher
+    const {getPopular} = this.props
     let next = page
  
     if (page >= total_pages) {
-      getPopularMovies()
+      getPopular()
     } 
     else {
       next++
-      getPopularMovies(next)
+      getPopular(next)
     }
   }
 
   prevPage() {
-    const {total_pages, page} = this.props.popularMovies
-    const {getPopularMovies} = this.props
+    const {total_pages, page} = this.props.fetcher
+    const {getPopular} = this.props
     let prev = page
 
     if (page <= 1) {
-      getPopularMovies(total_pages)
+      getPopular(total_pages)
     }
     else {
       prev--
-      getPopularMovies(prev)
+      getPopular(prev)
     }
   }
 
   render() {
-    const {results} = this.props.popularMovies
-
+    const {results} = this.props.fetcher
+    console.log(results)
     return (
-      <Movie
-       films={results} 
-       nextPage={this.nextPage} 
-       prevPage={this.prevPage}
-      />
+      <div>
+        <Movie films={results}/>
+        <Buttons
+          nextPage={this.nextPage.bind(this)} 
+          prevPage={this.prevPage.bind(this)}
+        />
+      </div>   
     )
   }
 }
 
 const mapStateToProps = state => ({
-  popularMovies: state.popularMovies
+  fetcher: state.fetcher
 })
 
-export default connect(mapStateToProps, {getPopularMovies})(Test)
+export default connect(mapStateToProps, {getPopular})(Mainpage)
