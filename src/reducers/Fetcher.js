@@ -1,10 +1,11 @@
-import {GET_POPULAR_MOVIES, GET_MOVIE_DETAILS} from '../actions/actions'
+import {GET_POPULAR_MOVIES, GET_MOVIE_DETAILS, GET_RECOMENDATIONS} from '../actions/actions'
 
 const initalState = {
   total_pages: 0,
   results: [],
   page: 1,
-  data: {},
+  details: {},
+  recomendations: []
 }
 
 export default function(state = initalState, action) {
@@ -19,8 +20,14 @@ export default function(state = initalState, action) {
       case GET_MOVIE_DETAILS: 
         return {
           ...state,
-          data: action.payload
+          details: action.payload
       }
+      case GET_RECOMENDATIONS:
+      return {
+        ...state,
+        recomendations: action.payload.results
+      }
+
     default:
       return state
   }

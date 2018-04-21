@@ -39,7 +39,6 @@ class Mainpage extends Component {
 
   render() {
     const {results} = this.props.fetcher
-    console.log(results)
     return (
       <div>
         <Movie films={results}/>

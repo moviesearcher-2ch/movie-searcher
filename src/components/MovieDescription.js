@@ -1,30 +1,37 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 import Card, {CardActions, CardContent, CardMedia} from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Divider from 'material-ui/Divider';
 
-const MovieDescription = ({data}) => {
+const MovieDescription = ({details}) => {
+
   const margintop = {marginTop: "8px"}
   const paddingtop ={paddingTop: "8px"}
-  const genres = data.genres.map(genre => genre.name + ' ')
+  const genres = details.genres.map(genre => genre.name + ' ')
   const path = `https://image.tmdb.org/t/p/w780/`
+
+  MovieDescription.propTypes = {
+    details: PropTypes.object.isRequired
+  }
+  
   return (
-    <Grid item>
+    <Grid item style={{marginLeft: "auto", marginRight: "auto"}}>
       <Card style={{ width: "780px" }}>
         <CardMedia
-          image={`${path}${data.backdrop_path}`}
-          title="Contemplative Reptile"
+          image={`${path}${details.backdrop_path}`}
+          title={details.title}
           style={{ height: "439px", width: "780px" }}
         />
         <CardContent>
           <Typography gutterBottom variant="title" component="h2">
-            {data.title}
+            {details.title}
           </Typography>
           <Typography variant="subheading" component="p" >
-            {data.overview}
+            {details.overview}
           </Typography>
           <Divider light style={margintop} />
           <Typography component="p" variant="subheading" style={paddingtop}>
@@ -32,19 +39,19 @@ const MovieDescription = ({data}) => {
           </Typography>
           <Divider light style={margintop} />
           <Typography component="p" variant="subheading" style={paddingtop}>
-            Budget: {data.budget + "$"}
+            Budget: {details.budget + "$"}
           </Typography>
           <Divider light style={margintop} />
           <Typography component="p" variant="subheading" style={paddingtop}>
-            Avarege rating: {data.vote_average} (the number of votes {data.vote_count})
+            Avarege rating: {details.vote_average} (the number of votes {details.vote_count})
           </Typography>
           <Divider light style={margintop} />
           <Typography component="p" variant="subheading" style={paddingtop}>
-            Tagline: {data.tagline}
+            Tagline: {details.tagline}
           </Typography>
           <Divider light style={margintop} />
           <Typography component="p" variant="subheading" style={paddingtop}>
-            Release date: {data.release_date}
+            Release date: {details.release_date}
           </Typography>
         </CardContent>
         <CardActions>
@@ -56,7 +63,6 @@ const MovieDescription = ({data}) => {
         </CardActions>
       </Card>
     </Grid>
-    
   )
 }
 
