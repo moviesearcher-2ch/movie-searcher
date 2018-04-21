@@ -19,12 +19,12 @@ const MovieDescription = ({details}) => {
   }
   
   return (
-    <Grid item style={{marginLeft: "auto", marginRight: "auto"}}>
-      <Card style={{ width: "780px" }}>
+    <Grid item xs={12}>
+      <Card>
         <CardMedia
           image={`${path}${details.backdrop_path}`}
           title={details.title}
-          style={{ height: "439px", width: "780px" }}
+          style={{ height: "439px" }}
         />
         <CardContent>
           <Typography gutterBottom variant="title" component="h2">

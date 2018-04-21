@@ -12,23 +12,34 @@ class MovieDetails extends Component {
     this.props.getDetails(filmId)
     this.props.getRecomendations(filmId)
   }
+
+  componentWillReceiveProps(nextProps) { 
+    const {filmId} = this.props.match.params
+    const nextfilmId = nextProps.match.params.filmId
+
+    if (filmId !== nextfilmId) {
+      this.props.getDetails(nextfilmId)
+      this.props.getRecomendations(nextfilmId)
+    }
+  }
   
   render() {
     const {details, recomendations} = this.props.fetcher
-    
+    console.log('details: ', details)
+    console.log('recomendations: ', recomendations)
     return (
-      <Grid style={{overflow: "hidden"}}>
-        <Grid container justify="center">
+      <Grid style={{ overflow: "hidden" }}>
+        <Grid
+          container
+          justify="space-around"
+          spacing={8}
+          style={{ margin: "0 auto", width: "780px" }}>
           {Object.keys(details).length === 0 ?
             <h1>Loading . . .</h1> :
             <MovieDescription details={details} />}
-        </Grid>
-        <Grid container justify="center" spacing={8}>
-          {recomendations.slice(0, 6).map(film =>
-            <Recomendations 
-              key={film.id} 
-              film={film} />
-          )}
+            {recomendations.slice(0, 8).map(film =>
+              <Recomendations key={film.id} film={film} />
+            )}
         </Grid>
       </Grid>
     )

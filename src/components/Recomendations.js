@@ -6,7 +6,6 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import {Link} from 'react-router-dom'
 
 const Recomendations = ({film}) => {
-    
     const path = `http://image.tmdb.org/t/p/w185/`
     return (
       <Grid item>
