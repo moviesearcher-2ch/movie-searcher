@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPopular} from '../actions/actions'
+import {getPopular, searchMovies} from '../actions/actions'
+import Search from '../components/Search'
 import Movie from '../components/Movie'
-import Buttons from '../components/Buttons'
+import Grid from 'material-ui/Grid';
 
 class Mainpage extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getPopular()
   }
 
@@ -37,16 +38,32 @@ class Mainpage extends Component {
     }
   }
 
+  getQuery(e) {
+    const value = e.target.value.toLowerCase()
+    
+    if (value) {
+      this.props.searchMovies(value) 
+    }
+    else {
+      this.props.getPopular()
+    } 
+  }
+
   render() {
     const {results} = this.props.fetcher
+    
     return (
-      <div>
-        <Movie films={results}/>
-        <Buttons
-          nextPage={this.nextPage.bind(this)} 
+      <Grid item xs={12} style={{overflow: "hidden", marginTop: "8px"}}>
+        <Search 
+          searchMovies={this.props.searchMovies}
+          getQuery={this.getQuery.bind(this)}
+        /> 
+        <Movie
+          films={results}
+          nextPage={this.nextPage.bind(this)}
           prevPage={this.prevPage.bind(this)}
         />
-      </div>   
+      </Grid>
     )
   }
 }
@@ -55,4 +72,4 @@ const mapStateToProps = state => ({
   fetcher: state.fetcher
 })
 
-export default connect(mapStateToProps, {getPopular})(Mainpage)
+export default connect(mapStateToProps, {getPopular, searchMovies})(Mainpage)

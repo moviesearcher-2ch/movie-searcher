@@ -10,7 +10,7 @@ import Divider from 'material-ui/Divider';
 const MovieDescription = ({details}) => {
 
   const margintop = {marginTop: "8px"}
-  const paddingtop ={paddingTop: "8px"}
+  const paddingtop = {paddingTop: "8px"}
   const genres = details.genres.map(genre => genre.name + ' ')
   const path = `https://image.tmdb.org/t/p/w780/`
 
@@ -24,7 +24,7 @@ const MovieDescription = ({details}) => {
         <CardMedia
           image={`${path}${details.backdrop_path}`}
           title={details.title}
-          style={{ height: "439px" }}
+          style={{height: "439px"}}
         />
         <CardContent>
           <Typography gutterBottom variant="title" component="h2">

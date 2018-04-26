@@ -14,7 +14,7 @@ const Buttons = ({nextPage, prevPage}) => {
       <Button 
         variant="raised" 
         color="primary" 
-        style={{ marginTop: "5px"}}
+        style={{marginTop: "5px"}}
         onClick={nextPage}>
         Next page
       </Button>

@@ -3,11 +3,12 @@ import {connect} from 'react-redux'
 import {getDetails, getRecomendations} from '../actions/actions'
 import Grid from 'material-ui/Grid';
 import PropTypes from 'prop-types';
+import {CircularProgress} from 'material-ui/Progress';
 import MovieDescription from '../components/MovieDescription'
 import Recomendations from '../components/Recomendations'
 
 class MovieDetails extends Component {  
-  componentWillMount() {
+  componentDidMount() {
     const {filmId} = this.props.match.params
     this.props.getDetails(filmId)
     this.props.getRecomendations(filmId)
@@ -25,19 +26,18 @@ class MovieDetails extends Component {
   
   render() {
     const {details, recomendations} = this.props.fetcher
-    console.log('details: ', details)
-    console.log('recomendations: ', recomendations)
+
     return (
-      <Grid style={{ overflow: "hidden" }}>
+      <Grid style={{overflow: "hidden"}}>
         <Grid
           container
           justify="space-around"
           spacing={8}
-          style={{ margin: "0 auto", width: "780px" }}>
+          style={{margin: "0 auto", width: "780px"}}>
           {Object.keys(details).length === 0 ?
-            <h1>Loading . . .</h1> :
+            <CircularProgress /> :
             <MovieDescription details={details} />}
-            {recomendations.slice(0, 8).map(film =>
+            {recomendations.map(film =>
               <Recomendations key={film.id} film={film} />
             )}
         </Grid>
