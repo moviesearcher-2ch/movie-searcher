@@ -1,8 +1,8 @@
 import React from 'react'
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
 import ToolbarTitle from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography';
+import Typography from 'material-ui/Typography'
 import blue from 'material-ui/colors/blue'
 import {Link} from 'react-router-dom'
 

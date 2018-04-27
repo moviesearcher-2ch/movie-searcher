@@ -16,8 +16,7 @@ const Favourites = (props) => {
               saveToFavourites={saveToFavourites}
               removeFromFavourites={removeFromFavourites}
               isFavourite={film.id in favouritesMovies}            
-            />
-          ))}
+            />))}
         </Grid>
       </Grid>
     )

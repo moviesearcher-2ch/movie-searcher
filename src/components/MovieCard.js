@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-import {GridListTile, GridListTileBar} from 'material-ui/GridList';
+import PropTypes from 'prop-types'
+import {GridListTile, GridListTileBar} from 'material-ui/GridList'
 import Grid from 'material-ui/Grid';
-import IconButton from 'material-ui/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import IconButton from 'material-ui/IconButton'
+import StarBorderIcon from '@material-ui/icons/StarBorder'
 import {Link} from 'react-router-dom'
 
   
@@ -20,7 +20,7 @@ const MovieCard = (props) => {
 
   return (
     <Grid item>
-      <GridListTile style={{ height: '489px' }}>
+      <GridListTile style={{height: '489px'}}>
         <Link to={`/f/${film.id}`} className="links">
           <img
             src={`${path}${film.poster_path}`}

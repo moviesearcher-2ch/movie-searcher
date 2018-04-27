@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 import {getPopular, searchMovies} from '../actions/actions'
 import Search from '../components/Search'
 import Movie from '../components/Movie'
-import Grid from 'material-ui/Grid';
+import Grid from 'material-ui/Grid'
 
 class Mainpage extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getPopular()
   }
 
@@ -55,7 +55,6 @@ class Mainpage extends Component {
     return (
       <Grid item xs={12} style={{overflow: "hidden", marginTop: "8px"}}>
         <Search 
-          searchMovies={this.props.searchMovies}
           getQuery={this.getQuery.bind(this)}
         /> 
         <Movie

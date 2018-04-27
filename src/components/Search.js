@@ -4,14 +4,15 @@ import Grid from 'material-ui/Grid'
 import TextField from 'material-ui/TextField'
 import {DebounceInput} from 'react-debounce-input'
 
-const Search = ({searchMovies, getQuery}) => {
+const Search = ({getQuery}) => {
   Search.propTypes = {
-    searchMovies: PropTypes.func.isRequired,
     getQuery: PropTypes.func.isRequired
   }
 
   const textField = props => (
     <TextField {...props}
+      type="search"
+      label="Search field"
       style={{ width: "500px", marginBottom: "10px" }}
     />
   )
@@ -19,6 +20,7 @@ const Search = ({searchMovies, getQuery}) => {
   return (
     <Grid container justify="center">
       <DebounceInput 
+        autoFocus
         element={textField}
         minLength={2}
         debounceTimeout={300}

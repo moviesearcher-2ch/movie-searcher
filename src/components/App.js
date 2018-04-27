@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Bar from './Bar'
 import MovieDetails from '../containers/MovieDetails'
 import Mainpage from '../containers/Mainpage'

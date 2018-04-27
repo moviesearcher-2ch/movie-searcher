@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {saveToFavourites, removeFromFavourites} from '../actions/actions'
-import PropTypes from 'prop-types';
-import Grid from 'material-ui/Grid';
+import PropTypes from 'prop-types'
+import Grid from 'material-ui/Grid'
 import MovieCard from './MovieCard'
 import Buttons from './Buttons'
 
