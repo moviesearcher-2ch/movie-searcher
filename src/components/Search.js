@@ -11,15 +11,12 @@ const Search = ({searchMovies, getQuery}) => {
   }
 
   const textField = props => (
-    
     <TextField {...props}
       style={{ width: "500px", marginBottom: "10px" }}
     />
-    
   )
 
   return (
-
     <Grid container justify="center">
       <DebounceInput 
         element={textField}
@@ -27,7 +24,6 @@ const Search = ({searchMovies, getQuery}) => {
         debounceTimeout={300}
         onChange={getQuery}
       />
-
     </Grid>
   )
 }

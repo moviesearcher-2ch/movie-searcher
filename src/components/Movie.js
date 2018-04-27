@@ -16,8 +16,7 @@ const Movie = (props) => {
       <Grid container justify="center" spacing={8}>
         {props.films.map(film => (
           <MovieCard 
-            key={film.id} 
-            film={film} 
+            key={film.id} film={film} 
             saveToFavourites={props.saveToFavourites}
             removeFromFavourites={props.removeFromFavourites}
             isFavourite={ film.id in props.favouritesMovies}

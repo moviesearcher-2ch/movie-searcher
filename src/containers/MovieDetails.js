@@ -26,7 +26,6 @@ class MovieDetails extends Component {
   
   render() {
     const {details, recomendations} = this.props.fetcher
-
     return (
       <Grid style={{overflow: "hidden"}}>
         <Grid
