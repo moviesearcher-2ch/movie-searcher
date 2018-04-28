@@ -1,52 +1,46 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getPopular, searchMovies} from '../actions/actions'
+import {searchMovies} from '../actions/actions'
 import Search from '../components/Search'
 import Movie from '../components/Movie'
 import Grid from 'material-ui/Grid'
 
 class Mainpage extends Component {
   componentDidMount() {
-    this.props.getPopular()
+    this.props.searchMovies()
   }
 
   nextPage() {
-    const {total_pages, page} = this.props.fetcher
-    const {getPopular} = this.props
+    const {total_pages, page, filter} = this.props.fetcher
+    const {searchMovies} = this.props
     let next = page
  
     if (page >= total_pages) {
-      getPopular()
+      searchMovies(filter)
     } 
     else {
       next++
-      getPopular(next)
+      searchMovies(filter, next)
     }
   }
 
   prevPage() {
-    const {total_pages, page} = this.props.fetcher
-    const {getPopular} = this.props
+    const {total_pages, page, filter} = this.props.fetcher
+    const {searchMovies} = this.props
     let prev = page
 
     if (page <= 1) {
-      getPopular(total_pages)
+      searchMovies(filter, total_pages)
     }
     else {
       prev--
-      getPopular(prev)
+      searchMovies(filter, prev)
     }
   }
 
   getQuery(e) {
     const value = e.target.value.toLowerCase()
-    
-    if (value) {
-      this.props.searchMovies(value) 
-    }
-    else {
-      this.props.getPopular()
-    } 
+    this.props.searchMovies(value)
   }
 
   render() {
@@ -71,4 +65,4 @@ const mapStateToProps = state => ({
   fetcher: state.fetcher
 })
 
-export default connect(mapStateToProps, {getPopular, searchMovies})(Mainpage)
+export default connect(mapStateToProps, {searchMovies})(Mainpage)

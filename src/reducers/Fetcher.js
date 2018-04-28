@@ -1,5 +1,4 @@
 import {
-  GET_POPULAR_MOVIES,
   GET_MOVIE_DETAILS,
   GET_RECOMENDATIONS,
   SEARCH_MOVIES
@@ -11,18 +10,12 @@ const initalState = {
   results: [],
   page: 1,
   details: {},
-  recomendations: []
+  recomendations: [],
+  filter: ''
 }
 
 export default function (state = initalState, action) {
   switch (action.type) {
-    case GET_POPULAR_MOVIES:
-      return {
-        ...state,
-        total_pages: action.payload.total_pages,
-        results: action.payload.results,
-        page: action.payload.page
-      }
     case GET_MOVIE_DETAILS:
       return {
         ...state,
@@ -36,9 +29,10 @@ export default function (state = initalState, action) {
     case SEARCH_MOVIES:
       return {
         ...state,
-        total_pages: action.payload.total_pages,
-        results: action.payload.results,
-        page: action.payload.page
+        total_pages: action.payload.data.total_pages,
+        results: action.payload.data.results,
+        page: action.payload.data.page,
+        filter: action.payload.filter
       }   
     default:
       return state
