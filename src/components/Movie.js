@@ -10,7 +10,7 @@ const Movie = (props) => {
   Movie.propTypes = {
     films: PropTypes.array.isRequired
   }
-  
+
   return (
     <Grid>
       <Grid container justify="center" spacing={8}>
@@ -23,10 +23,13 @@ const Movie = (props) => {
           />
         ))}    
       </Grid>
-      <Buttons 
-        nextPage={props.nextPage} 
-        prevPage={props.prevPage}>
-      </Buttons>
+      {props.total_pages > 1 ?
+        <Buttons 
+          nextPage={props.nextPage} 
+          prevPage={props.prevPage}>
+        </Buttons> : 
+        <div style={{textAlign: "center"}}>No results</div>         
+      }
     </Grid>
   )
 }

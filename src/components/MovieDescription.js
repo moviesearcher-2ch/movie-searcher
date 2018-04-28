@@ -20,15 +20,13 @@ const MovieDescription = ({details}) => {
     component: "p",
     variant: "subheading"
   })`
-    && {
-      margin-top: 8px;
-    }
+    margin-top: 8px;
   `
 
   const StyledDivider = styled(Divider).attrs({
     light: true,
   })`
-    margin-top: 8px
+   margin-top: 8px
   `
 
   return (

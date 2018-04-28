@@ -12,7 +12,7 @@ const Search = ({getQuery}) => {
   const textField = props => (
     <TextField {...props}
       type="search"
-      label="Search field"
+      label="Search the movie"
       style={{ width: "500px", marginBottom: "10px" }}
     />
   )

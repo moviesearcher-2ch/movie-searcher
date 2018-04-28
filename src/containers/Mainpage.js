@@ -39,12 +39,12 @@ class Mainpage extends Component {
   }
 
   getQuery(e) {
-    const value = e.target.value.toLowerCase()
+    const value = e.target.value.toLowerCase()    
     this.props.searchMovies(value)
   }
 
   render() {
-    const {results} = this.props.fetcher
+    const {results, total_pages} = this.props.fetcher
     
     return (
       <Grid item xs={12} style={{overflow: "hidden", marginTop: "8px"}}>
@@ -53,6 +53,7 @@ class Mainpage extends Component {
         /> 
         <Movie
           films={results}
+          total_pages={total_pages}
           nextPage={this.nextPage.bind(this)}
           prevPage={this.prevPage.bind(this)}
         />
