@@ -9,6 +9,7 @@ const Contact = () => {
         <p>I hope that you enjoy my app. If you want to contact me, please use these links:</p>
         <div><a href="http://t.me/nameiseva">Telegram</a></div>
         <div><a href="https://github.com/mynameiseva">Github</a></div>
+        <div><a href="vmneutral@gmail.com">Gmail</a></div>
       </div>
     </StyledGridContainer>
   )
