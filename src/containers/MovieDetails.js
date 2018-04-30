@@ -27,7 +27,8 @@ class MovieDetails extends Component {
   render() {
     const style = {margin: "0 auto", width: "780px"}
     const {details, recomendations} = this.props.fetcher
-    console.log(saveToFavourites)
+    const {favouritesMovies, saveToFavourites, removeFromFavourites} = this.props
+    
     return (
       <StyledGridItem>
         <StyledGridContainer style={style}>
@@ -37,7 +38,7 @@ class MovieDetails extends Component {
               details={details} 
               saveToFavourites={saveToFavourites}
               removeFromFavourites={removeFromFavourites}
-              isFavourite={details.id in this.props.favouritesMovies}
+              isFavourite={details.id in favouritesMovies}
             />}
           {recomendations.map(film =>
             <Recomendations key={film.id} film={film}/>
@@ -50,7 +51,9 @@ class MovieDetails extends Component {
 
 MovieDetails.propTypes = {
   getDetails: PropTypes.func.isRequired,
-  getRecomendations: PropTypes.func.isRequired
+  getRecomendations: PropTypes.func.isRequired,
+  saveToFavourites: PropTypes.func.isRequired,
+  removeFromFavourites: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

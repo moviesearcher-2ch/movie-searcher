@@ -17,7 +17,7 @@ const Movies = (props) => {
     favouritesMovies,
     nextPage, prevPage,
     films } = props
-
+    
   return (
     <StyledGridContainer>
       {films.map(film => (

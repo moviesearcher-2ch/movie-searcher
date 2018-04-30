@@ -6,16 +6,18 @@ import {StyledGridContainer, StyledGridItem} from '../styled/Styles'
 import MovieCard from '../components/MovieCard'
 
 const Favourites = ({saveToFavourites, removeFromFavourites, favouritesMovies}) => {
+  const noResults = <i>Your favourites list is empty</i>
   return (
     <StyledGridItem>
       <StyledGridContainer>
-        {Object.values(favouritesMovies).map(film => (
-          <MovieCard
-            key={film.id} film={film}
-            saveToFavourites={saveToFavourites}
-            removeFromFavourites={removeFromFavourites}
-            isFavourite={film.id in favouritesMovies}
-          />))}
+        {!localStorage.length ? noResults :
+          Object.values(favouritesMovies).map(film => (
+            <MovieCard
+              key={film.id} film={film}
+              saveToFavourites={saveToFavourites}
+              removeFromFavourites={removeFromFavourites}
+              isFavourite={film.id in favouritesMovies}
+            />))}
       </StyledGridContainer>
     </StyledGridItem>
   )

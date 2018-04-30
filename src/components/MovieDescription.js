@@ -4,20 +4,33 @@ import Card, {CardActions, CardContent, CardMedia} from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import {StyledDivider, StyledTypography, StyledGridItem, StyledLink} from '../styled/Styles'
 
-const MovieDescription = ({details}) => {
+const MovieDescription = ({details, removeFromFavourites, saveToFavourites, isFavourite}) => {
+  MovieDescription.propTypes = {
+    details: PropTypes.object.isRequired,
+    removeFromFavourites: PropTypes.func.isRequired,
+    saveToFavourites: PropTypes.func.isRequired,
+    isFavourite: PropTypes.bool.isRequired
+  }
+
   const genres = details.genres.map(genre => genre.name + ' ')
   const path = `https://image.tmdb.org/t/p/w780/`
   const imageNotFound = `http://leeford.in/wp-content/uploads/2017/09/image-not-found.jpg`
+  const imagePath = details.backdrop_path ? `${path}${details.backdrop_path}` : imageNotFound
+  const buttonColor = isFavourite ? "secondary" :"primary"
 
-  MovieDescription.propTypes = {
-    details: PropTypes.object.isRequired
+  const isStored = value => {
+    if (value) {
+      removeFromFavourites(details.id)
+    } else {
+      saveToFavourites(details.id, details)
+    }
   }
-  
+
   return (
     <StyledGridItem xs={12}>
       <Card>
         <CardMedia
-          image={details.backdrop_path ? `${path}${details.backdrop_path}` : imageNotFound}
+          image={imagePath}
           title={details.title}
           style={{height: "439px"}}
         />
@@ -28,35 +41,35 @@ const MovieDescription = ({details}) => {
           <StyledTypography>
             {details.overview}
           </StyledTypography>
-          <StyledDivider/>
+          <StyledDivider />
           <StyledTypography>
             Genres: {genres}
           </StyledTypography>
-          <StyledDivider/>
+          <StyledDivider />
           <StyledTypography>
             Budget: {details.budget + "$"}
           </StyledTypography>
-          <StyledDivider/>
+          <StyledDivider />
           <StyledTypography>
             Avarege rating: {details.vote_average} (the number of votes {details.vote_count})
           </StyledTypography>
-          <StyledDivider/>
+          <StyledDivider />
           <StyledTypography>
             Tagline: {details.tagline}
           </StyledTypography>
-          <StyledDivider/>
+          <StyledDivider />
           <StyledTypography>
             Release date: {details.release_date}
           </StyledTypography>
         </CardContent>
         <CardActions>
-          <StyledLink to="/favourites">
-            <Button size="small" color="secondary">
-              Add film to favourites
-              </Button>
-          </StyledLink>
+          <Button
+            color={buttonColor}
+            onClick={() => isStored(isFavourite)} >
+            {isFavourite ? "REMOVE FROM FAVOURITES" : "ADD FILM TO FAVOURITES"}
+          </Button>
           <StyledLink to="/">
-            <Button size="small" color="primary">
+            <Button color="primary">
               Back to main page
             </Button>
           </StyledLink>
