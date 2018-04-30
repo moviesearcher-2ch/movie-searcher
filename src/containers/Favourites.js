@@ -2,25 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {removeFromFavourites, saveToFavourites} from '../actions/actions'
-import Grid from 'material-ui/Grid'
+import {StyledGridContainer, StyledGridItem} from '../styled/Styles'
 import MovieCard from '../components/MovieCard'
 
-const Favourites = (props) => {
-    const {saveToFavourites, removeFromFavourites, favouritesMovies} = props
-    return (
-      <Grid item xs={12} style={{overflow: "hidden", marginTop: "8px"}}>
-        <Grid container justify="center" spacing={8}>
-          {Object.values(favouritesMovies).map(film => (
-            <MovieCard 
-              key={film.id} film={film}
-              saveToFavourites={saveToFavourites}
-              removeFromFavourites={removeFromFavourites}
-              isFavourite={film.id in favouritesMovies}            
-            />))}
-        </Grid>
-      </Grid>
-    )
-  }
+const Favourites = ({saveToFavourites, removeFromFavourites, favouritesMovies}) => {
+  return (
+    <StyledGridItem>
+      <StyledGridContainer>
+        {Object.values(favouritesMovies).map(film => (
+          <MovieCard
+            key={film.id} film={film}
+            saveToFavourites={saveToFavourites}
+            removeFromFavourites={removeFromFavourites}
+            isFavourite={film.id in favouritesMovies}
+          />))}
+      </StyledGridContainer>
+    </StyledGridItem>
+  )
+}
 
 Favourites.propTypes = {
   favouritesMovies: PropTypes.object.isRequired,

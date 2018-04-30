@@ -4,7 +4,8 @@ import Toolbar from 'material-ui/Toolbar'
 import ToolbarTitle from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import blue from 'material-ui/colors/blue'
-import {Link} from 'react-router-dom'
+import {StyledLink} from '../styled/Styles'
+
 
 const Bar = () => {
   return (
@@ -13,15 +14,15 @@ const Bar = () => {
         <Typography variant="title" color="inherit">
           Movie Searcher
         </Typography>
-        <Link to="/" className="links">
+        <StyledLink to="/">
           <ToolbarTitle>Home</ToolbarTitle>
-        </Link> 
-        <Link to="/favourites" className="links">
+        </StyledLink>
+        <StyledLink to="/favourites">
           <ToolbarTitle>Favourites</ToolbarTitle>
-        </Link> 
-        <Link to="/some" className="links">
-          <ToolbarTitle>Another Page</ToolbarTitle>
-        </Link>  
+        </StyledLink>
+        <StyledLink to="/contact">
+          <ToolbarTitle>Contact me</ToolbarTitle>
+        </StyledLink>
       </Toolbar>
     </AppBar>
   )

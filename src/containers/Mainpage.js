@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {searchMovies} from '../actions/actions'
-import Search from '../components/Search'
-import Movie from '../components/Movie'
-import Grid from 'material-ui/Grid'
+import SearchBar from '../components/SearchBar'
+import Movies from './Movies'
+import {StyledGridItem} from '../styled/Styles'
 
 class Mainpage extends Component {
   componentDidMount() {
@@ -47,17 +47,17 @@ class Mainpage extends Component {
     const {results, total_pages} = this.props.fetcher
     
     return (
-      <Grid item xs={12} style={{overflow: "hidden", marginTop: "8px"}}>
-        <Search 
+      <StyledGridItem>    
+        <SearchBar 
           getQuery={this.getQuery.bind(this)}
         /> 
-        <Movie
+        <Movies
           films={results}
           total_pages={total_pages}
           nextPage={this.nextPage.bind(this)}
           prevPage={this.prevPage.bind(this)}
         />
-      </Grid>
+      </StyledGridItem>
     )
   }
 }

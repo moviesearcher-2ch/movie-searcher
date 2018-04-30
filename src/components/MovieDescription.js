@@ -1,49 +1,33 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Card, {CardActions, CardContent, CardMedia} from 'material-ui/Card'
 import Button from 'material-ui/Button'
-import Typography from 'material-ui/Typography'
-import Grid from 'material-ui/Grid'
-import Divider from 'material-ui/Divider'
-import styled from "styled-components";
+import {StyledDivider, StyledTypography, StyledGridItem, StyledLink} from '../styled/Styles'
 
 const MovieDescription = ({details}) => {
   const genres = details.genres.map(genre => genre.name + ' ')
   const path = `https://image.tmdb.org/t/p/w780/`
+  const imageNotFound = `http://leeford.in/wp-content/uploads/2017/09/image-not-found.jpg`
 
   MovieDescription.propTypes = {
     details: PropTypes.object.isRequired
   }
   
-  const StyledTypography = styled(Typography).attrs({
-    component: "p",
-    variant: "subheading"
-  })`
-    margin-top: 8px;
-  `
-
-  const StyledDivider = styled(Divider).attrs({
-    light: true,
-  })`
-   margin-top: 8px
-  `
-
   return (
-    <Grid item xs={12}>
+    <StyledGridItem xs={12}>
       <Card>
         <CardMedia
-          image={`${path}${details.backdrop_path}`}
+          image={details.backdrop_path ? `${path}${details.backdrop_path}` : imageNotFound}
           title={details.title}
           style={{height: "439px"}}
         />
         <CardContent>
-          <Typography gutterBottom variant="title" component="h2">
+          <StyledTypography gutterBottom variant="title" component="h2">
             {details.title}
-          </Typography>
-          <Typography variant="subheading" component="p" >
+          </StyledTypography>
+          <StyledTypography>
             {details.overview}
-          </Typography>
+          </StyledTypography>
           <StyledDivider/>
           <StyledTypography>
             Genres: {genres}
@@ -66,14 +50,19 @@ const MovieDescription = ({details}) => {
           </StyledTypography>
         </CardContent>
         <CardActions>
-          <Link to="/" className="links">
+          <StyledLink to="/favourites">
+            <Button size="small" color="secondary">
+              Add film to favourites
+              </Button>
+          </StyledLink>
+          <StyledLink to="/">
             <Button size="small" color="primary">
               Back to main page
             </Button>
-          </Link>
+          </StyledLink>
         </CardActions>
       </Card>
-    </Grid>
+    </StyledGridItem>
   )
 }
 

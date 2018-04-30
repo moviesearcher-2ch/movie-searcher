@@ -1,8 +1,6 @@
-import React from "react"
+import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
-import Grid from 'material-ui/Grid'
-import styled from "styled-components"
+import {StyledButton, StyledGridContainer} from '../styled/Styles'
 
 const Buttons = ({nextPage, prevPage}) => {
   Buttons.propTypes = {
@@ -10,21 +8,11 @@ const Buttons = ({nextPage, prevPage}) => {
     prevPage: PropTypes.func.isRequired
   }
 
-  const StyledButton = styled(Button).attrs({
-    variant: "raised", 
-    color: "primary",
-    marginleft: props => props.px || ""
-  })`
-    && {
-      margin-top: 5px;
-      margin-left: ${props => props.marginleft}
-    }
-  `
   return (
-    <Grid container justify="center">
+    <StyledGridContainer>
       <StyledButton onClick={prevPage}>PREV PAGE</StyledButton>
       <StyledButton onClick={nextPage} px="10px">NEXT PAGE</StyledButton>
-    </Grid>
+    </StyledGridContainer>
   )
 }
 

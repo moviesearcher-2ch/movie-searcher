@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getDetails, getRecomendations} from '../actions/actions'
-import Grid from 'material-ui/Grid';
+import {getDetails, getRecomendations, removeFromFavourites, saveToFavourites} from '../actions/actions'
 import PropTypes from 'prop-types';
 import {CircularProgress} from 'material-ui/Progress';
 import MovieDescription from '../components/MovieDescription'
 import Recomendations from '../components/Recomendations'
+import {StyledGridContainer, StyledGridItem} from '../styled/Styles'
 
 class MovieDetails extends Component {  
   componentDidMount() {
@@ -23,24 +23,27 @@ class MovieDetails extends Component {
       this.props.getRecomendations(nextfilmId)
     }
   }
-  
+
   render() {
+    const style = {margin: "0 auto", width: "780px"}
     const {details, recomendations} = this.props.fetcher
+    console.log(saveToFavourites)
     return (
-      <Grid style={{overflow: "hidden"}}>
-        <Grid
-          container
-          justify="space-around"
-          spacing={8}
-          style={{margin: "0 auto", width: "780px"}}>
+      <StyledGridItem>
+        <StyledGridContainer style={style}>
           {Object.keys(details).length === 0 ?
             <CircularProgress /> :
-            <MovieDescription details={details} />}
-            {recomendations.map(film =>
-              <Recomendations key={film.id} film={film} />
-            )}
-        </Grid>
-      </Grid>
+            <MovieDescription 
+              details={details} 
+              saveToFavourites={saveToFavourites}
+              removeFromFavourites={removeFromFavourites}
+              isFavourite={details.id in this.props.favouritesMovies}
+            />}
+          {recomendations.map(film =>
+            <Recomendations key={film.id} film={film}/>
+          )}
+        </StyledGridContainer>
+      </StyledGridItem>
     )
   }
 }
@@ -51,7 +54,8 @@ MovieDetails.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  fetcher: state.fetcher
+  fetcher: state.fetcher,
+  favouritesMovies: state.storage.storeItem
 })
 
-export default connect(mapStateToProps, {getDetails, getRecomendations})(MovieDetails)
+export default connect(mapStateToProps, {getDetails, getRecomendations, removeFromFavourites, saveToFavourites})(MovieDetails)
