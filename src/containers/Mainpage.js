@@ -10,7 +10,7 @@ class Mainpage extends Component {
     this.props.searchMovies()
   }
 
-  nextPage() {
+  nextPage = () => {
     const {total_pages, page, filter} = this.props.fetcher
     const {searchMovies} = this.props
     let next = page
@@ -24,7 +24,7 @@ class Mainpage extends Component {
     }
   }
 
-  prevPage() {
+  prevPage = () => {
     const {total_pages, page, filter} = this.props.fetcher
     const {searchMovies} = this.props
     let prev = page
@@ -38,7 +38,7 @@ class Mainpage extends Component {
     }
   }
 
-  getQuery(e) {
+  getQuery = e => {
     const value = e.target.value.toLowerCase()    
     this.props.searchMovies(value)
   }
@@ -49,13 +49,13 @@ class Mainpage extends Component {
     return (
       <StyledGridItem>    
         <SearchBar 
-          getQuery={this.getQuery.bind(this)}
+          getQuery={this.getQuery}
         /> 
         <Movies
           films={results}
           total_pages={total_pages}
-          nextPage={this.nextPage.bind(this)}
-          prevPage={this.prevPage.bind(this)}
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
         />
       </StyledGridItem>
     )
